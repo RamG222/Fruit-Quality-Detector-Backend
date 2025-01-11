@@ -13,7 +13,15 @@ app = Flask(__name__)
 CORS(app)  # Allow all origins or specify specific origins
 
 
-# Load the pre-trained model
+# URL of the model
+url = "https://ramapp.dev/fruit_quality_classifier.h5"
+
+# Download the model file
+response = requests.get(url)
+with open("fruit_quality_classifier.h5", "wb") as f:
+    f.write(response.content)
+
+# Load the model
 model = load_model("fruit_quality_classifier.h5")
 print("Model loaded successfully.")
 
